@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  href?: string;
+  image?: string;
+  date?: Date;
+}
+
+const { title, description, href, image, date } = Astro.props;
+---
+
+<article class="card">
+  {image && (
+    <div class="card-image">
+      <img src={image} alt={title} />
+    </div>
+  )}
+  <div class="card-content">
+    {date && (
+      <time datetime={date.toISOString()}>
+        {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+    )}
+    <h3>
+      {href ? <a href={href}>{title}</a> : title}
+    </h3>
+    {description && <p>{description}</p>}
+  </div>
+</article>
+
+<style>
+  .card {
+    background: #1a1a2e;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  time {
+    font-size: 0.875rem;
+    color: #888;
+  }
+
+  h3 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  h3 a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  h3 a:hover {
+    color: #e94560;
+  }
+
+  p {
+    color: #aaa;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>

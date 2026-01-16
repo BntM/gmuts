@@ -1,16 +1,68 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CardGrid from '../components/CardGrid.astro';
+import Card from '../components/Card.astro';
+import { getCollection } from 'astro:content';
 
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="GMUTS - Home">
+  <Hero
+    title="Welcome to GMUTS"
+    subtitle="A modern website built with Astro and Decap CMS"
+    ctaText="Read the Blog"
+    ctaLink="/blog"
+  />
+
+  <section class="latest-posts">
+    <div class="section-header">
+      <h2>Latest Posts</h2>
+      <a href="/blog">View all posts &rarr;</a>
+    </div>
+    <CardGrid columns={3}>
+      {posts.map(post => (
+        <Card
+          title={post.data.title}
+          description={post.data.description}
+          href={`/blog/${post.id}`}
+          image={post.data.image}
+          date={post.data.date}
+        />
+      ))}
+    </CardGrid>
+  </section>
+</BaseLayout>
+
+<style>
+  .latest-posts {
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  .section-header a {
+    color: #e94560;
+    text-decoration: none;
+  }
+
+  .section-header a:hover {
+    text-decoration: underline;
+  }
+</style>

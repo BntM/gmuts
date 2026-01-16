@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog - GMUTS" description="Read our latest articles and updates">
+  <Hero
+    title="Blog"
+    subtitle="Thoughts, ideas, and updates"
+  />
+
+  <CardGrid columns={3}>
+    {posts.map(post => (
+      <Card
+        title={post.data.title}
+        description={post.data.description}
+        href={`/blog/${post.id}`}
+        image={post.data.image}
+        date={post.data.date}
+      />
+    ))}
+  </CardGrid>
+
+  {posts.length === 0 && (
+    <p class="no-posts">No posts yet. Check back soon!</p>
+  )}
+</BaseLayout>
+
+<style>
+  .no-posts {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #888;
+  }
+</style>

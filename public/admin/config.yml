@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: posts
+    label: Posts
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Featured Image, name: image, widget: image, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown }

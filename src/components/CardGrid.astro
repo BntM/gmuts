@@ -1,0 +1,33 @@
+---
+interface Props {
+  columns?: 2 | 3 | 4;
+}
+
+const { columns = 3 } = Astro.props;
+---
+
+<div class="card-grid" data-columns={columns}>
+  <slot />
+</div>
+
+<style>
+  .card-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .card-grid[data-columns="2"] {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+
+  .card-grid[data-columns="3"] {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .card-grid[data-columns="4"] {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+</style>

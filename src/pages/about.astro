@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="About - GMUTS" description="Learn more about GMUTS">
+  <Hero
+    title="About Us"
+    subtitle="Learn more about what we do"
+  />
+
+  <section class="about-content">
+    <p>
+      Welcome to GMUTS! This site is built with Astro and uses Decap CMS for content management.
+    </p>
+    <p>
+      You can easily manage content through the admin panel at <a href="/admin">/admin</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    line-height: 1.8;
+  }
+
+  .about-content p {
+    font-size: 1.125rem;
+    color: #ccc;
+  }
+</style>
