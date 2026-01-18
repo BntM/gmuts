@@ -31,15 +31,16 @@ const { title, description, href, image, date } = Astro.props;
 
 <style>
   .card {
-    background: #1a1a2e;
+    background: #fff;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e5dda0;
   }
 
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
   .card-image {
@@ -59,7 +60,7 @@ const { title, description, href, image, date } = Astro.props;
 
   time {
     font-size: 0.875rem;
-    color: #888;
+    color: #666;
   }
 
   h3 {
@@ -68,17 +69,17 @@ const { title, description, href, image, date } = Astro.props;
   }
 
   h3 a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
     transition: color 0.2s;
   }
 
   h3 a:hover {
-    color: #e94560;
+    color: #17532E;
   }
 
   p {
-    color: #aaa;
+    color: #555;
     margin: 0;
     line-height: 1.6;
   }

@@ -61,7 +61,7 @@ const { Content } = await render(post);
   }
 
   .post-header time {
-    color: #888;
+    color: #666;
     font-size: 0.875rem;
   }
 
@@ -69,10 +69,11 @@ const { Content } = await render(post);
     margin: 0.5rem 0;
     font-size: 2.5rem;
     line-height: 1.2;
+    color: #17532E;
   }
 
   .description {
-    color: #aaa;
+    color: #555;
     font-size: 1.125rem;
     margin: 0;
   }
@@ -83,17 +84,19 @@ const { Content } = await render(post);
 
   .post-content :global(h2) {
     margin-top: 2rem;
+    color: #17532E;
   }
 
   .post-content :global(pre) {
-    background: #1a1a2e;
+    background: #f5eda8;
     padding: 1rem;
     border-radius: 4px;
     overflow-x: auto;
+    border: 1px solid #e5dda0;
   }
 
   .post-content :global(code) {
-    background: #1a1a2e;
+    background: #f5eda8;
     padding: 0.2rem 0.4rem;
     border-radius: 2px;
   }
@@ -106,11 +109,11 @@ const { Content } = await render(post);
   .post-footer {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid #333;
+    border-top: 1px solid #e5dda0;
   }
 
   .post-footer a {
-    color: #e94560;
+    color: #17532E;
     text-decoration: none;
   }
 
