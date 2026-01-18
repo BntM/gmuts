@@ -1,8 +1,10 @@
 ---
-title: "Welcome to GMUTS"
-description: "This is our first blog post. Learn more about what we're building."
+title: Technology and Society Club
+description: A club addressing the need for technical and policy expertice to
+  ensure the safe development of technologies such as Artificial Intelligence
 date: 2026-01-16
-image: "/placeholder.jpg"
+image: /placeholder.jpg
+draft: true
 ---
 
 # Welcome to GMUTS
