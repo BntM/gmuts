@@ -1,8 +1,5 @@
 ---
-title: "About Us"
-description: "Learn more about GMUTS"
+title: About Us
+description: Learn more about GMUTS
 ---
-
-Welcome to GMUTS! This site is built with Astro and uses Decap CMS for content management.
-
-You can easily manage content through the admin panel at `/admin`.
+We are a student led club seeking to develop technical and policy talent to address the safe development of transformational technology such as AI and bio tech.
