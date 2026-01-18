@@ -1,19 +1,18 @@
 ---
-interface Props {
-  siteName?: string;
-}
+import navigation from '../data/navigation.json';
+import site from '../data/site.json';
 
-const { siteName = "GMUTS" } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
   <div class="footer-container">
     <div class="footer-content">
-      <p>&copy; {currentYear} {siteName}. All rights reserved.</p>
+      <p>&copy; {currentYear} {site.title}. All rights reserved.</p>
       <ul class="footer-links">
-        <li><a href="/privacy">Privacy</a></li>
-        <li><a href="/terms">Terms</a></li>
+        {navigation.footer.map((item) => (
+          <li><a href={item.url}>{item.label}</a></li>
+        ))}
       </ul>
     </div>
   </div>

@@ -1,0 +1,11 @@
+{
+  "main": [
+    { "label": "Home", "url": "/" },
+    { "label": "Blog", "url": "/blog" },
+    { "label": "About", "url": "/about" }
+  ],
+  "footer": [
+    { "label": "Privacy", "url": "/privacy" },
+    { "label": "Terms", "url": "/terms" }
+  ]
+}

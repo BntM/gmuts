@@ -1,21 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import { getCollection, render } from 'astro:content';
+
+const pages = await getCollection('pages');
+const aboutPage = pages.find(page => page.id === 'about');
+
+let Content;
+if (aboutPage) {
+  const rendered = await render(aboutPage);
+  Content = rendered.Content;
+}
 ---
 
-<BaseLayout title="About - GMUTS" description="Learn more about GMUTS">
+<BaseLayout
+  title={aboutPage ? `${aboutPage.data.title} - GMUTS` : "About - GMUTS"}
+  description={aboutPage?.data.description || "Learn more about GMUTS"}
+>
   <Hero
-    title="About Us"
-    subtitle="Learn more about what we do"
+    title={aboutPage?.data.title || "About Us"}
+    subtitle={aboutPage?.data.description || "Learn more about what we do"}
   />
 
   <section class="about-content">
-    <p>
-      Welcome to GMUTS! This site is built with Astro and uses Decap CMS for content management.
-    </p>
-    <p>
-      You can easily manage content through the admin panel at <a href="/admin">/admin</a>.
-    </p>
+    {Content ? <Content /> : (
+      <p>Welcome to GMUTS! This site is built with Astro and uses Decap CMS for content management.</p>
+    )}
   </section>
 </BaseLayout>
 
@@ -27,8 +37,8 @@ import Hero from '../components/Hero.astro';
     line-height: 1.8;
   }
 
-  .about-content p {
+  .about-content :global(p) {
     font-size: 1.125rem;
-    color: #ccc;
+    color: #555;
   }
 </style>
