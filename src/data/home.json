@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "Welcome to GMUTS",
+    "subtitle": "A modern website built with Astro and Decap CMS",
+    "ctaText": "Read the Blog",
+    "ctaLink": "/blog"
+  },
+  "postsSection": {
+    "title": "Latest Posts",
+    "linkText": "View all posts →"
+  }
+}

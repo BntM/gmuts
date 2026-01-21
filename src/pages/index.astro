@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import CardGrid from '../components/CardGrid.astro';
 import Card from '../components/Card.astro';
 import { getCollection } from 'astro:content';
+import home from '../data/home.json';
 
 const posts = (await getCollection('posts'))
   .filter(post => !post.data.draft)
@@ -13,16 +14,16 @@ const posts = (await getCollection('posts'))
 
 <BaseLayout title="GMUTS - Home">
   <Hero
-    title="Welcome to GMUTS"
-    subtitle="A modern website built with Astro and Decap CMS"
-    ctaText="Read the Blog"
-    ctaLink="/blog"
+    title={home.hero.title}
+    subtitle={home.hero.subtitle}
+    ctaText={home.hero.ctaText}
+    ctaLink={home.hero.ctaLink}
   />
 
   <section class="latest-posts">
     <div class="section-header">
-      <h2>Latest Posts</h2>
-      <a href="/blog">View all posts &rarr;</a>
+      <h2>{home.postsSection.title}</h2>
+      <a href="/blog">{home.postsSection.linkText}</a>
     </div>
     <CardGrid columns={3}>
       {posts.map(post => (
