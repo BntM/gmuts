@@ -1,11 +1,17 @@
 {
   "main": [
-    { "label": "Home", "url": "/" },
-    { "label": "Blog", "url": "/blog" },
-    { "label": "About", "url": "/about" }
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Apply",
+      "url": "/applly"
+    },
+    {
+      "label": "Activities",
+      "url": "/activities"
+    }
   ],
-  "footer": [
-    { "label": "Privacy", "url": "/privacy" },
-    { "label": "Terms", "url": "/terms" }
-  ]
+  "footer": []
 }
