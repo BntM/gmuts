@@ -1,12 +1,12 @@
 {
   "hero": {
-    "title": "Welcome to GMUTS",
-    "subtitle": "A modern website built with Astro and Decap CMS",
-    "ctaText": "Read the Blog",
-    "ctaLink": "/blog"
+    "title": "Technology and Soceity Club",
+    "subtitle": "A club addressing the need for technical and policy expertice to ensure the safe development of technologies such as Artificial Intelligence",
+    "ctaText": "Apply",
+    "ctaLink": "/apply"
   },
   "postsSection": {
-    "title": "Latest Posts",
-    "linkText": "View all posts →"
+    "title": "Announcements",
+    "linkText": "View announcements ->"
   }
 }
