@@ -26,27 +26,31 @@ export async function onRequest(context) {
     const tokenData = await tokenResponse.json();
 
     if (tokenData.access_token) {
-      // Return HTML that sends the token to the parent window
-      const html = `
-        <!DOCTYPE html>
-        <html>
-          <head><title>OAuth Complete</title></head>
-          <body>
-            <script>
-              (function() {
-                function sendMessage(message) {
-                  window.opener.postMessage(
-                    'authorization:github:${tokenData.access_token ? 'success' : 'error'}:' + JSON.stringify(message),
-                    '*'
-                  );
-                  window.close();
-                }
-                sendMessage({ token: '${tokenData.access_token}', provider: 'github' });
-              })();
-            </script>
-          </body>
-        </html>
-      `;
+      const html = `<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authorizing...</title>
+  </head>
+  <body>
+    <script>
+      (function() {
+        const token = "${tokenData.access_token}";
+        const provider = "github";
+
+        // Try multiple message formats for compatibility
+        const message = "authorization:" + provider + ":success:" + JSON.stringify({ token, provider });
+
+        if (window.opener) {
+          window.opener.postMessage(message, "*");
+          setTimeout(() => window.close(), 1000);
+        } else {
+          document.body.innerHTML = "<p>Authorization successful. You can close this window.</p>";
+        }
+      })();
+    </script>
+    <p>Authorizing, please wait...</p>
+  </body>
+</html>`;
       return new Response(html, {
         headers: { 'Content-Type': 'text/html' },
       });
@@ -55,7 +59,15 @@ export async function onRequest(context) {
     }
   }
 
+  // Handle errors from GitHub
+  if (url.searchParams.has('error')) {
+    const error = url.searchParams.get('error');
+    const errorDescription = url.searchParams.get('error_description');
+    return new Response(`OAuth error: ${error} - ${errorDescription}`, { status: 400 });
+  }
+
   // Redirect to GitHub OAuth
-  const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user`;
+  const redirectUri = `${url.origin}/oauth`;
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user&redirect_uri=${encodeURIComponent(redirectUri)}`;
   return Response.redirect(authUrl, 302);
 }
