@@ -2,6 +2,8 @@ backend:
   name: github
   repo: BntM/gmuts
   branch: master
+  base_url: https://gmuts.org
+  auth_endpoint: /oauth
 
 media_folder: public/images
 public_folder: /images
