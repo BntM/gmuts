@@ -2,21 +2,25 @@
   "main": [
     {
       "label": "Home",
+      "linkType": "external",
       "url": "/"
     },
     {
       "label": "Apply",
+      "linkType": "external",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSckzB1ERZeudGlsAkgSHkoo9jiM_ZwWDdcBNv_U-ZRogFrc0g/viewform?usp=header"
     },
     {
       "label": "About Us",
+      "linkType": "external",
       "url": "/About us"
     }
   ],
   "footer": [
     {
       "label": "About Us",
-      "url": "About Us"
+      "linkType": "external",
+      "url": "/About Us"
     }
   ]
 }

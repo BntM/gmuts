@@ -3,6 +3,13 @@ import navigation from '../data/navigation.json';
 import site from '../data/site.json';
 
 const currentYear = new Date().getFullYear();
+
+function getNavUrl(item: { linkType?: string; page?: string; url?: string }) {
+  if (item.linkType === 'page' && item.page) {
+    return `/${item.page}`;
+  }
+  return item.url || '/';
+}
 ---
 
 <footer>
@@ -11,7 +18,7 @@ const currentYear = new Date().getFullYear();
       <p>&copy; {currentYear} {site.title}. All rights reserved.</p>
       <ul class="footer-links">
         {navigation.footer.map((item) => (
-          <li><a href={item.url}>{item.label}</a></li>
+          <li><a href={getNavUrl(item)}>{item.label}</a></li>
         ))}
       </ul>
     </div>

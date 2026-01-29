@@ -93,13 +93,53 @@ collections:
             widget: list
             fields:
               - { label: Label, name: label, widget: string }
-              - { label: URL, name: url, widget: string }
+              - label: Link Type
+                name: linkType
+                widget: select
+                options:
+                  - { label: "Internal Page", value: "page" }
+                  - { label: "External URL", value: "external" }
+                default: "page"
+              - label: Page
+                name: page
+                widget: relation
+                collection: pages
+                search_fields: [title]
+                value_field: "{{slug}}"
+                display_fields: [title]
+                required: false
+                hint: "Select a page (used when Link Type is 'Internal Page')"
+              - label: External URL
+                name: url
+                widget: string
+                required: false
+                hint: "Enter full URL (used when Link Type is 'External URL')"
           - label: Footer Navigation
             name: footer
             widget: list
             fields:
               - { label: Label, name: label, widget: string }
-              - { label: URL, name: url, widget: string }
+              - label: Link Type
+                name: linkType
+                widget: select
+                options:
+                  - { label: "Internal Page", value: "page" }
+                  - { label: "External URL", value: "external" }
+                default: "page"
+              - label: Page
+                name: page
+                widget: relation
+                collection: pages
+                search_fields: [title]
+                value_field: "{{slug}}"
+                display_fields: [title]
+                required: false
+                hint: "Select a page (used when Link Type is 'Internal Page')"
+              - label: External URL
+                name: url
+                widget: string
+                required: false
+                hint: "Enter full URL (used when Link Type is 'External URL')"
 
       - name: home
         label: Home Page

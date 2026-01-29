@@ -1,6 +1,13 @@
 ---
 import navigation from '../data/navigation.json';
 import site from '../data/site.json';
+
+function getNavUrl(item: { linkType?: string; page?: string; url?: string }) {
+  if (item.linkType === 'page' && item.page) {
+    return `/${item.page}`;
+  }
+  return item.url || '/';
+}
 ---
 
 <nav>
@@ -8,7 +15,7 @@ import site from '../data/site.json';
     <a href="/" class="logo">{site.title}</a>
     <ul class="nav-links">
       {navigation.main.map((item) => (
-        <li><a href={item.url}>{item.label}</a></li>
+        <li><a href={getNavUrl(item)}>{item.label}</a></li>
       ))}
     </ul>
   </div>

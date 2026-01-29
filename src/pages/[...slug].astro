@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map(page => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<BaseLayout title={`${page.data.title} - GMUTS`} description={page.data.description}>
+  <article class="page-content">
+    <h1>{page.data.title}</h1>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    color: #17532E;
+    margin-bottom: 2rem;
+  }
+
+  .content {
+    line-height: 1.8;
+  }
+
+  .content :global(h2) {
+    margin-top: 2rem;
+    color: #17532E;
+  }
+
+  .content :global(pre) {
+    background: #f5eda8;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    border: 1px solid #e5dda0;
+  }
+
+  .content :global(code) {
+    background: #f5eda8;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+</style>
