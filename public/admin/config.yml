@@ -74,6 +74,7 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text }
       - { label: URL, name: url, widget: string }
+      - { label: Source Name, name: source, widget: string, required: false, hint: "Display name for the source (e.g. 'Dario Amodei'). Defaults to domain if empty." }
       - { label: Preview Image, name: image, widget: image, required: false }
 
   # Site Settings (single file)

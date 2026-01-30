@@ -49,6 +49,7 @@ const resources = defineCollection({
     title: z.string(),
     description: z.string(),
     url: z.string(),
+    source: z.string().optional(),
     image: z.string().optional(),
   }),
 });
