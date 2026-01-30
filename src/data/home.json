@@ -6,7 +6,7 @@
     "ctaLink": "https://docs.google.com/forms/d/e/1FAIpQLSckzB1ERZeudGlsAkgSHkoo9jiM_ZwWDdcBNv_U-ZRogFrc0g/viewform?usp=header"
   },
   "postsSection": {
-    "show": true,
+    "show": false,
     "title": "Announcements",
     "linkText": "View announcements ->"
   }
