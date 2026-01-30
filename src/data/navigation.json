@@ -16,6 +16,12 @@
       "linkType": "page",
       "page": "about",
       "url": ""
+    },
+    {
+      "label": "Resources",
+      "linkType": "page",
+      "page": "resources",
+      "url": ""
     }
   ],
   "footer": [
