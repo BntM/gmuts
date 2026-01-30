@@ -157,5 +157,6 @@ collections:
             name: postsSection
             widget: object
             fields:
+              - { label: Show Posts Section, name: show, widget: boolean, default: true }
               - { label: Section Title, name: title, widget: string }
               - { label: Link Text, name: linkText, widget: string }

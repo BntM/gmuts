@@ -6,10 +6,13 @@ import Card from '../components/Card.astro';
 import { getCollection } from 'astro:content';
 import home from '../data/home.json';
 
-const posts = (await getCollection('posts'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const showPosts = home.postsSection?.show !== false;
+const posts = showPosts
+  ? (await getCollection('posts'))
+      .filter(post => !post.data.draft)
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+      .slice(0, 3)
+  : [];
 ---
 
 <BaseLayout title="GMUTS - Home">
@@ -20,23 +23,25 @@ const posts = (await getCollection('posts'))
     ctaLink={home.hero.ctaLink}
   />
 
-  <section class="latest-posts">
-    <div class="section-header">
-      <h2>{home.postsSection.title}</h2>
-      <a href="/blog">{home.postsSection.linkText}</a>
-    </div>
-    <CardGrid columns={3}>
-      {posts.map(post => (
-        <Card
-          title={post.data.title}
-          description={post.data.description}
-          href={`/blog/${post.id}`}
-          image={post.data.image}
-          date={post.data.date}
-        />
-      ))}
-    </CardGrid>
-  </section>
+  {showPosts && (
+    <section class="latest-posts">
+      <div class="section-header">
+        <h2>{home.postsSection.title}</h2>
+        <a href="/blog">{home.postsSection.linkText}</a>
+      </div>
+      <CardGrid columns={3}>
+        {posts.map(post => (
+          <Card
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.id}`}
+            image={post.data.image}
+            date={post.data.date}
+          />
+        ))}
+      </CardGrid>
+    </section>
+  )}
 </BaseLayout>
 
 <style>
