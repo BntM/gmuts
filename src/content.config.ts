@@ -43,4 +43,14 @@ const categories = defineCollection({
   }),
 });
 
-export const collections = { posts, pages, authors, categories };
+const resources = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/resources" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    url: z.string(),
+    image: z.string().optional(),
+  }),
+});
+
+export const collections = { posts, pages, authors, categories, resources };

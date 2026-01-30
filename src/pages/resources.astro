@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+---
+
+<BaseLayout title="Resources - GMUTS" description="Resources we recommend engaging with.">
+  <div class="resources-page">
+    <h1>Resources</h1>
+    <p class="subtitle">Resources we recommend engaging with.</p>
+
+    <div class="resources-grid">
+      {resources.map(resource => (
+        <a href={resource.data.url} target="_blank" rel="noopener noreferrer" class="resource-card">
+          {resource.data.image && (
+            <div class="resource-image">
+              <img src={resource.data.image} alt={resource.data.title} />
+            </div>
+          )}
+          <div class="resource-content">
+            <h2>{resource.data.title}</h2>
+            <p>{resource.data.description}</p>
+            <span class="resource-link">
+              {new URL(resource.data.url).hostname}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .resources-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    color: #17532E;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5dda0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .resource-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #f5eda8;
+  }
+
+  .resource-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .resource-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .resource-content h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.5rem;
+    color: #17532E;
+  }
+
+  .resource-content p {
+    font-size: 0.875rem;
+    color: #555;
+    margin: 0 0 1rem;
+    flex-grow: 1;
+  }
+
+  .resource-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #888;
+  }
+
+  .resource-link svg {
+    width: 12px;
+    height: 12px;
+  }
+</style>

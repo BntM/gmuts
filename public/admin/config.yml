@@ -64,6 +64,18 @@ collections:
       - { label: Name, name: name, widget: string }
       - { label: Description, name: description, widget: text, required: false }
 
+  # Resources
+  - name: resources
+    label: Resources
+    folder: src/content/resources
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: URL, name: url, widget: string }
+      - { label: Preview Image, name: image, widget: image, required: false }
+
   # Site Settings (single file)
   - name: settings
     label: Settings
